@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Market Demand Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Airline Booking Market Demand</h1>
+            <p>Gather and analyze market demand trends for your hostel locations.</p>
+        </header>
+
+        <div class="card" id="filter-card">
+            <h2>Select a Destination</h2>
+            <form id="demand-form">
+                <select id="destination-select" name="destination" required>
+                    <option value="" disabled selected>Choose a city...</option>
+                    <option value="LHR">London</option>
+                    <option value="CDG">Paris</option>
+                    <option value="FCO">Rome</option>
+                    <option value="BCN">Barcelona</option>
+                </select>
+                <button type="submit">Analyze Demand</button>
+            </form>
+            <p class="api-note">Note: Routes are from Madrid (MAD) to demonstrate functionality with the available test API data.</p>
+        </div>
+
+        <div id="loading-spinner" class="hidden">
+            <div class="spinner"></div>
+            <p>Analyzing data... this may take a moment.</p>
+        </div>
+
+        <div id="error-message" class="card error hidden"></div>
+
+        <div id="results-container" class="hidden">
+            <div class="card" id="summary-card">
+                <h2>AI-Powered Insights</h2>
+                <p id="ai-summary-text"></p>
+            </div>
+            <div class="card" id="charts-card">
+                <h2>Airline Popularity by Deals Found</h2>
+                <div class="chart-container">
+                    <canvas id="airline-chart"></canvas>
+                </div>
+            </div>
+            <div class="card" id="table-card">
+                <h2>Airline Price Data</h2>
+                <table id="routes-table">
+                    <thead>
+                        <tr>
+                            <th>Airline</th>
+                            <th>Deals Found</th>
+                            <th>Average Price (EUR)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
