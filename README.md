@@ -66,7 +66,7 @@ F --> A
 
 ### 2. Clone Repository
 ```bash
-git clone [Your-GitHub-Repo-Link-Here]
+git clone https://github.com/albertabishek/Python-Developer-Intern-assessment-with-PS.git
 cd airline-demand-app
 ```
 
